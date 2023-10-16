@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { AddPostService } from '../add-post.service';
 import { PostPayload } from '../add-post/post-payload';
@@ -10,12 +11,16 @@ import { PostPayload } from '../add-post/post-payload';
 })
 export class HomeComponent implements OnInit{
 
+  loggedUser: any;
+
   posts: Observable<Array<PostPayload>>;
-  constructor(private postService: AddPostService){
+  constructor(private postService: AddPostService, private $localStorage: LocalStorageService){
 
   }
   ngOnInit(): void {
       this.posts = this.postService.getAllPost();
+      this.loggedUser = this.$localStorage.retrieve("username");
+      console.log(this.loggedUser);
+      
   }
-
 }

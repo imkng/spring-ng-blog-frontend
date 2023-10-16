@@ -16,6 +16,7 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { HttpClientInterceptor } from './http-client-interceptor';
 import { PostComponent } from './post/post.component';
+import { AuthGaurdService } from './auth-gaurd-service';
 
 @NgModule({
   declarations: [
@@ -40,13 +41,13 @@ import { PostComponent } from './post/post.component';
       {path: 'register-success', component: RegisterSuccessComponent},
       {path: "home", component: HomeComponent},
       {path: "", component: HomeComponent},
-      {path: "add-post", component: AddPostComponent},
-      {path: "post/:id", component: PostComponent}
+      {path: "add-post", component: AddPostComponent, canActivate:[AuthGaurdService]},
+      {path: "post/:id", component: PostComponent}      
     ]),
     HttpClientModule,
     EditorModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}, AuthGaurdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

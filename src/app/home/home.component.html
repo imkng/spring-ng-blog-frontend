@@ -1,5 +1,5 @@
-<div class="content">
-    <div class="container">
+<!-- <div class="content">
+    <div class="articles">
       <div class="row" *ngFor="let post of posts | async">
         <div class="blogpost">
           <h3><a href="/post/{{post.id}}" class="blog-title">{{post.title}}</a></h3>
@@ -15,4 +15,46 @@
         <hr>
       </div>
     </div>
-  </div>
+  </div> -->
+  <!-- <section class="articles" *ngFor="let post of posts | async">
+    <article>
+      <div class="article-wrapper">
+        <figure>
+          <img src="https://picsum.photos/id/1011/800/450" alt="" />
+        </figure>
+        <div class="article-body">
+          <div>
+            <i class="fas fa-user"></i> Author: <p>{{post.userName}}</p>
+          </div>
+          <h2>{{post.title}}</h2>
+          <p [innerHTML]="post.content"></p>
+          <a href="/post/{{post.id}}" class="read-more">
+            Read more <span class="sr-only">about this is some title</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  </section> -->
+
+  <section class="mt-3">
+    <div class="container" >
+      <div class="row" >
+        <div class="col-md-3" *ngFor="let post of posts | async">
+          <div class="card shadow-lg mb-3">
+            <div class="card-body mb-3">
+              <p class="h3">{{post.title}}</p>
+              <div>
+                Author: <p style="color: teal">{{post.userName}}</p>
+              </div>
+              <p [innerHTML]="post.content"></p>
+              <a type="button" href="/post/{{post.id}}" class="btn btn-info btn-sm">Read more</a>
+              <a type="button" href="/post/{{post.id}}"  *ngIf="post.userName === loggedUser" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

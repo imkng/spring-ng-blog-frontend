@@ -34,9 +34,10 @@ export class LoginComponent implements OnInit{
 
     this.authService.login(this.loginPayload).subscribe(data=>{
       if(data){
-        console.log("Login Is Successfull")
-        this.router.navigateByUrl("/home")
+        console.log("Login Is Successfull");
+        this.router.navigateByUrl("/home");
       }else{
+        alert("Login Failed!!. Please create an account")
         console.log("Login failed")
       }
     })
